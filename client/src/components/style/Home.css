@@ -1,0 +1,223 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&display=swap');
+
+/* === Overlay Styling (Transparent, No Blur) === */
+.home-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.05);
+  animation: fadeIn 1.2s ease forwards;
+  font-family: "Rajdhani", sans-serif;
+  pointer-events: none;
+}
+
+/* === Content Container === */
+.home-content {
+  text-align: center;
+  color: #ffffff;
+  text-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
+  pointer-events: auto;
+  padding: 0 20px;
+}
+
+/* === Title === */
+.home-title {
+  font-size: 3rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 15px;
+  color: #00ffff;
+  text-shadow: 0 0 15px #00ffff, 0 0 35px #0088ff;
+  animation: glowText 3s ease-in-out infinite alternate;
+}
+
+.home-title span {
+  color: #ffffff;
+  text-shadow: 0 0 20px #00ffff;
+}
+
+/* === Subtitle === */
+.home-subtitle {
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: #cfefff;
+  letter-spacing: 1px;
+  max-width: 700px;
+  margin: 0 auto 25px auto;
+  animation: fadeSlideUp 1.5s ease forwards;
+}
+
+/* === Buttons === */
+.home-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  margin-top: 15px;
+  flex-wrap: wrap;
+}
+
+/* === Sporty Button === */
+.home-btn {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #00ffff 0%, #0077ff 100%);
+  color: #000;
+  font-size: 1.1rem;
+  font-weight: 700;
+  padding: 14px 34px;
+  border: none;
+  border-radius: 10px 0px 10px 0px;
+  cursor: pointer;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  transition: all 0.25s ease;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.5),
+    inset 0 0 12px rgba(0, 119, 255, 0.2);
+  font-family: "Rajdhani", sans-serif;
+}
+
+/* ⚡ Glow bar movement */
+.home-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+  transition: all 0.5s ease;
+}
+
+.home-btn:hover::before {
+  left: 100%;
+}
+
+.home-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.8),
+    0 0 45px rgba(0, 119, 255, 0.6);
+  background: linear-gradient(135deg, #00ffff 20%, #0099ff 80%);
+  color: #fff;
+}
+
+/* === Secondary Button === */
+.home-btn.secondary {
+  background: transparent;
+  border: 2px solid #00ffff;
+  color: #00ffff;
+  border-radius: 0px 10px 0px 10px;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.home-btn.secondary::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 2px solid rgba(0, 255, 255, 0.4);
+  border-radius: inherit;
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.2);
+  animation: borderPulse 2s infinite alternate;
+}
+
+.home-btn.secondary:hover {
+  background: rgba(0, 255, 255, 0.1);
+  transform: scale(1.08);
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.8);
+  color: #fff;
+}
+
+/* === Animations === */
+@keyframes borderPulse {
+  from { box-shadow: 0 0 10px rgba(0, 255, 255, 0.3); }
+  to { box-shadow: 0 0 25px rgba(0, 255, 255, 0.8); }
+}
+
+@keyframes glowText {
+  0% { text-shadow: 0 0 10px #00ffff, 0 0 20px #0088ff; }
+  100% { text-shadow: 0 0 25px #00ffff, 0 0 50px #00aaff; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* === RESPONSIVE DESIGN === */
+
+/* Tablets */
+@media (max-width: 1024px) {
+  .home-title {
+    font-size: 2.4rem;
+  }
+  .home-subtitle {
+    font-size: 1.05rem;
+    max-width: 600px;
+  }
+  .home-btn {
+    font-size: 1rem;
+    padding: 12px 28px;
+  }
+}
+
+/* Mobiles */
+@media (max-width: 768px) {
+  .home-title {
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+  .home-subtitle {
+    font-size: 0.95rem;
+    padding: 0 10px;
+  }
+  .home-buttons {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+  .home-btn {
+    width: 80%;
+    padding: 12px 20px;
+    font-size: 1rem;
+  }
+}
+
+/* Small phones */
+@media (max-width: 480px) {
+  .home-title {
+    font-size: 1.6rem;
+    line-height: 1.2;
+  }
+  .home-subtitle {
+    font-size: 0.9rem;
+  }
+  .home-btn {
+    width: 90%;
+    font-size: 0.9rem;
+    padding: 10px 18px;
+  }
+}
+
+/* Very small (320px and below) */
+@media (max-width: 360px) {
+  .home-title {
+    font-size: 1.4rem;
+  }
+  .home-subtitle {
+    font-size: 0.85rem;
+  }
+  .home-btn {
+    font-size: 0.85rem;
+    padding: 8px 16px;
+  }
+}

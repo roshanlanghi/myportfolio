@@ -16,7 +16,7 @@ const Contact = () => {
 const API_URL =
   import.meta.env.MODE === "development"
     ? "http://localhost:5000/send"
-    : "https://myportfolio-3qml.onrender.com/send";// ⬅ change this after deployment
+    : "https://roshans-portfolio-k4rv.onrender.com/send";// ⬅ change this after deployment
 
   // handle input
   const handleChange = (e) => {

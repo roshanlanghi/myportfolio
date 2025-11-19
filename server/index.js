@@ -6,8 +6,17 @@ import { Resend } from "resend";
 dotenv.config();
 const app = express();
 
-// Middleware
-app.use(cors());
+// CORS Setup
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "https://roshans-portfolio-k4rv.onrender.com"
+    ],
+    methods: ["POST", "GET"],
+  })
+);
+
 app.use(express.json());
 
 // Resend setup
@@ -44,4 +53,6 @@ app.post("/send", async (req, res) => {
 
 // Server
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
+app.listen(PORT, () =>
+  console.log(`Server running on http://localhost:${PORT}`)
+);

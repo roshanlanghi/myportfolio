@@ -13,10 +13,11 @@ const Contact = () => {
   const [status, setStatus] = useState("");
 
   // Detect environment
-  const API_URL =
-    import.meta.env.MODE === "development"
-      ? "http://localhost:5000/send"
-      : "https://myportfolio-backend.onrender.com/send"; 
+ const API_URL =
+  import.meta.env.MODE === "development"
+    ? "http://localhost:5000/send"
+    : "https://myportfolio-3qml.onrender.com/send";
+
   // ⬅ final backend URL
 
   // handle input

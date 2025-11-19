@@ -13,10 +13,10 @@ const Contact = () => {
   const [status, setStatus] = useState("");
 
   // Detect environment
-  const API_URL =
-    import.meta.env.MODE === "development"
-      ? "http://localhost:5000/send"
-      : "https://YOUR_RENDER_BACKEND_URL/send"; // ⬅ change this after deployment
+const API_URL =
+  import.meta.env.MODE === "development"
+    ? "http://localhost:5000/send"
+    : "https://myportfolio-3qml.onrender.com/send";// ⬅ change this after deployment
 
   // handle input
   const handleChange = (e) => {

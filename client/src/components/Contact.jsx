@@ -12,6 +12,12 @@ const Contact = () => {
   // status
   const [status, setStatus] = useState("");
 
+  // Detect environment
+  const API_URL =
+    import.meta.env.MODE === "development"
+      ? "http://localhost:5000/send"
+      : "https://YOUR_RENDER_BACKEND_URL/send"; // ⬅ change this after deployment
+
   // handle input
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -23,7 +29,7 @@ const Contact = () => {
     setStatus("⏳ Sending message...");
 
     try {
-      const res = await fetch("http://localhost:5000/send", {
+      const res = await fetch(API_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -35,11 +41,11 @@ const Contact = () => {
         setStatus("✅ Message sent successfully!");
         setFormData({ name: "", email: "", message: "" });
       } else {
-        setStatus("❌ Failed to send message. Please try again.");
+        setStatus("❌ Failed to send. Try again.");
       }
     } catch (err) {
       console.error(err);
-      setStatus("⚠️ Server error. Please try later.");
+      setStatus("⚠️ Server error. Try later.");
     }
   };
 
@@ -48,8 +54,8 @@ const Contact = () => {
       <div className="contact-content">
         <h1 className="contact-title">📬 Get in Touch</h1>
         <p className="contact-subtitle">
-          I'd love to hear from you! Whether it's a project, idea, or
-          collaboration — let’s connect and build something futuristic together ⚡
+          I'd love to hear from you! Whether it's a project or collaboration —
+          let’s build something futuristic ⚡
         </p>
 
         <form className="contact-form" onSubmit={handleSubmit}>
@@ -61,6 +67,7 @@ const Contact = () => {
             onChange={handleChange}
             required
           />
+
           <input
             type="email"
             name="email"
@@ -69,6 +76,7 @@ const Contact = () => {
             onChange={handleChange}
             required
           />
+
           <textarea
             name="message"
             placeholder="Your Message"

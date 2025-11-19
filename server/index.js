@@ -1,67 +1,57 @@
-const express = require("express");
-const cors = require("cors");
-const path = require("path");
-const nodemailer = require("nodemailer");
-require("dotenv").config();
+import express from "express";
+import cors from "cors";
+import dotenv from "dotenv";
+import nodemailer from "nodemailer";
 
+dotenv.config();
 const app = express();
 
-// Middlewares
-app.use(cors());
+// Middleware
+app.use(cors()); 
 app.use(express.json());
 
-// ---------------------------------------------
-// CONTACT FORM API (POST /send)
-// ---------------------------------------------
+// Send Email Route
 app.post("/send", async (req, res) => {
   const { name, email, message } = req.body;
 
+  // Validate input
   if (!name || !email || !message) {
-    return res.json({ success: false, error: "Missing fields" });
+    return res.status(400).json({ success: false, error: "All fields required" });
   }
 
   try {
-    // Transport setup
+    // Nodemailer transporter (Gmail)
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: process.env.MAIL_USER,
-        pass: process.env.MAIL_PASS,
+        user: process.env.EMAIL_USER,  
+        pass: process.env.EMAIL_PASS,  
       },
     });
 
-    // Email options
+    // Email Content
     const mailOptions = {
       from: email,
-      to: process.env.MAIL_USER,
+      to: process.env.EMAIL_USER,
       subject: `New Contact Message from ${name}`,
       text: `
-Name: ${name}
-Email: ${email}
+        Name: ${name}
+        Email: ${email}
 
-Message:
-${message}
+        Message:
+        ${message}
       `,
     };
 
     await transporter.sendMail(mailOptions);
 
-    return res.json({ success: true });
+    res.json({ success: true, message: "Email sent successfully!" });
   } catch (err) {
-    console.error("Mail Error:", err);
-    return res.json({ success: false });
+    console.error("Email Error:", err);
+    res.status(500).json({ success: false, error: "Failed to send email" });
   }
 });
 
-// ---------------------------------------------
-// SERVE FRONTEND (React build)
-// ---------------------------------------------
-app.use(express.static(path.join(__dirname, "../client/dist")));
-
-app.use((req, res) => {
-  res.sendFile(path.join(__dirname, "../client/dist/index.html"));
-});
-
-// ---------------------------------------------
-const PORT = 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+// Server
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));

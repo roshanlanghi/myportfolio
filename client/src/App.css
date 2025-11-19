@@ -71,3 +71,12 @@ canvas {
     height: calc(100vh - 60px);
   }
 }
+.canvas-blocker {
+  pointer-events: none;
+}
+.mobile-bg {
+  position: fixed;
+  inset: 0;
+  background: url('/images/mobile.jpg') center/cover no-repeat;
+  z-index: -1;
+} 

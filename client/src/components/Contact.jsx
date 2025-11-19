@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+dimport React, { useState } from "react";
 import "./style/Contact.css";
 
 const Contact = () => {
@@ -15,8 +15,8 @@ const Contact = () => {
   // Detect environment
 const API_URL =
   import.meta.env.MODE === "development"
-    ? "http://localhost:5000/"
-    : "https://myportfolio-3qml.onrender.com/";
+    ? "http://localhost:5000/send"
+    : "https://myportfolio-3qml.onrender.com/send";
 
 // ⬅ change this after deployment
 

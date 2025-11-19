@@ -18,9 +18,7 @@ const App = () => {
 
   useEffect(() => {
     const updateMobile = () => {
-      const mobile = window.matchMedia("(max-width: 768px)").matches;
-      console.log("Mobile detection →", mobile, "Width:", window.innerWidth);
-      setIsMobile(mobile);
+      setIsMobile(window.innerWidth <= 768);
     };
 
     updateMobile();
@@ -30,65 +28,10 @@ const App = () => {
 
   return (
     <>
-      {/* Navbar always visible */}
+      {/* Always visible */}
       <Navbar onNavClick={setActiveSection} activeSection={activeSection} />
 
-      {/* ⭐ MOBILE BACKGROUND */}
-      {isMobile && <div className="mobile-bg">
-         {/* ⭐ OVERLAY CONTENT */}
-      <div className="overlay-content">
-        <AnimatePresence mode="wait">
-          {activeSection === "home" && (
-            <motion.div
-              key="home"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              <Home onNavClick={setActiveSection} />
-            </motion.div>
-          )}
-
-          {activeSection === "projects" && (
-            <motion.div
-              key="projects"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              <Projects />
-            </motion.div>
-          )}
-
-          {activeSection === "about" && (
-            <motion.div
-              key="about"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              <About />
-            </motion.div>
-          )}
-
-          {activeSection === "contact" && (
-            <motion.div
-              key="contact"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              <Contact />
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </div></div>}
-
-      {/* ⭐ DESKTOP 3D CANVAS */}
+      {/* ⭐ DESKTOP 3D BACKGROUND */}
       {!isMobile && (
         <Canvas
           className="canvas-blocker"
@@ -98,30 +41,11 @@ const App = () => {
           gl={{ toneMappingExposure: 1.3 }}
         >
           <CameraController activeSection={activeSection} />
-
           <color attach="background" args={["#050505"]} />
           <fog attach="fog" args={["#050505", 5, 20]} />
 
           <ambientLight intensity={2} color="#ffffff" />
           <pointLight position={[0, 3, 0]} intensity={2.5} color="#ffcc00" />
-          <pointLight position={[3, 3, 3]} intensity={2} color="#00ffea" />
-          <pointLight position={[-3, 3, -3]} intensity={2} color="#ff00ff" />
-
-          <spotLight
-            position={[0, 6, 5]}
-            angle={0.5}
-            intensity={3}
-            penumbra={1}
-            color="#ffcc00"
-            castShadow
-          />
-
-          <directionalLight
-            position={[10, 10, 5]}
-            intensity={2.5}
-            color="#00ffff"
-            castShadow
-          />
 
           <Environment preset="city" background={false} />
           <ContactShadows
@@ -132,65 +56,35 @@ const App = () => {
             far={10}
           />
 
-          <Sparkles
-            count={200}
-            scale={[10, 10, 10]}
-            size={5}
-            speed={0.4}
-            opacity={0.7}
-          />
+          <Sparkles count={200} scale={[10, 10, 10]} size={5} speed={0.4} />
 
           <Model1 />
         </Canvas>
       )}
 
-      {/* ⭐ OVERLAY CONTENT */}
+      {/* ⭐ RENDER CONTENT ONLY ONCE (Works on mobile & desktop) */}
       <div className="overlay-content">
         <AnimatePresence mode="wait">
           {activeSection === "home" && (
-            <motion.div
-              key="home"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.8 }}
-            >
+            <motion.div key="home" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
               <Home onNavClick={setActiveSection} />
             </motion.div>
           )}
 
           {activeSection === "projects" && (
-            <motion.div
-              key="projects"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.8 }}
-            >
+            <motion.div key="projects" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
               <Projects />
             </motion.div>
           )}
 
           {activeSection === "about" && (
-            <motion.div
-              key="about"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.8 }}
-            >
+            <motion.div key="about" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
               <About />
             </motion.div>
           )}
 
           {activeSection === "contact" && (
-            <motion.div
-              key="contact"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.8 }}
-            >
+            <motion.div key="contact" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
               <Contact />
             </motion.div>
           )}

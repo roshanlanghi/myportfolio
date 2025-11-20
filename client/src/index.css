@@ -55,3 +55,24 @@ a {
     font-size: 14px;
   }
 }
+
+.mobile-bg {
+  position: fixed;
+  inset: 0;
+  background: url('/images/mobile.jpg') center/cover no-repeat;
+  z-index: -1;
+} 
+.mobile-bg {
+  position: fixed;
+  top: 1;
+  left: 0;
+
+  width: 100%;
+  height: 100vh;
+
+  object-fit: cover;          /* fill screen */
+  object-position: center;    /* CENTER the image */
+
+  z-index: 0;
+  filter: brightness(0.65);   /* optional: matches 3D darkness */
+}

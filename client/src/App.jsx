@@ -32,35 +32,46 @@ const App = () => {
       <Navbar onNavClick={setActiveSection} activeSection={activeSection} />
 
       {/* ⭐ DESKTOP 3D BACKGROUND */}
-      {!isMobile && (
-        <Canvas
-          className="canvas-blocker"
-          shadows
-          style={{ position: "fixed", inset: 0, zIndex: 0, marginTop: "70px" }}
-          camera={{ position: [6, 2, 8], fov: 50 }}
-          gl={{ toneMappingExposure: 1.3 }}
-        >
-          <CameraController activeSection={activeSection} />
-          <color attach="background" args={["#050505"]} />
-          <fog attach="fog" args={["#050505", 5, 20]} />
+     {/* ⭐ DESKTOP 3D BACKGROUND */}
+{!isMobile && (
+  <Canvas
+    className="canvas-blocker"
+    shadows
+    style={{ position: "fixed", inset: 0, zIndex: 0, marginTop: "70px" }}
+    camera={{ position: [6, 2, 8], fov: 50 }}
+    gl={{ toneMappingExposure: 1.3 }}
+  >
+    <CameraController activeSection={activeSection} />
+    <color attach="background" args={["#050505"]} />
+    <fog attach="fog" args={["#050505", 5, 20]} />
 
-          <ambientLight intensity={2} color="#ffffff" />
-          <pointLight position={[0, 3, 0]} intensity={2.5} color="#ffcc00" />
+    <ambientLight intensity={2} color="#ffffff" />
+    <pointLight position={[0, 3, 0]} intensity={2.5} color="#ffcc00" />
 
-          <Environment preset="city" background={false} />
-          <ContactShadows
-            position={[0, -0.9, 0]}
-            opacity={0.5}
-            scale={10}
-            blur={3}
-            far={10}
-          />
+    <Environment preset="city" background={false} />
+    <ContactShadows
+      position={[0, -0.9, 0]}
+      opacity={0.5}
+      scale={10}
+      blur={3}
+      far={10}
+    />
 
-          <Sparkles count={200} scale={[10, 10, 10]} size={5} speed={0.4} />
+    <Sparkles count={200} scale={[10, 10, 10]} size={5} speed={0.4} />
 
-          <Model1 />
-        </Canvas>
-      )}
+    <Model1 />
+  </Canvas>
+)}
+
+{/* ⭐ MOBILE STATIC BACKGROUND IMAGE */}
+{isMobile && (
+  <img
+    src="/images/mobile.jpg"
+    alt="Mobile Background"
+    className="mobile-bg"
+  />
+)}
+
 
       {/* ⭐ RENDER CONTENT ONLY ONCE (Works on mobile & desktop) */}
       <div className="overlay-content">

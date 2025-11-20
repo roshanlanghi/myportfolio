@@ -74,9 +74,3 @@ canvas {
 .canvas-blocker {
   pointer-events: none;
 }
-.mobile-bg {
-  position: fixed;
-  inset: 0;
-  background: url('/images/mobile.jpg') center/cover no-repeat;
-  z-index: -1;
-} 

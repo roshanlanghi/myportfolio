@@ -9,7 +9,7 @@ export default function CameraController({ activeSection }) {
   // 🎥 Define camera positions for each section
   const positions = {
     home: [1, 1, -3],
-    about: [3, 2, 2],
+    about: [3, 1, 6],
     projects: [-2, 0, -1],
     contact: [0.3, 4, -2],
   };

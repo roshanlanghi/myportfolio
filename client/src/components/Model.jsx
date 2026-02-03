@@ -98,3 +98,29 @@ const Model = () => {
 };
 
 export default Model;
+  // ⚡ Reduce draw calls: ensure frustumCulled ON & shadows off for mobile
+  useEffect(() => {
+    scene.traverse((obj) => {
+      obj.frustumCulled = true;
+
+      // Disable unnecessary shadows for performance
+      obj.castShadow = false;
+      obj.receiveShadow = false;
+    });
+  }, [scene]);
+
+  return (
+    <primitive
+      ref={modelRef}
+      object={scene}
+      scale={1}
+      position={[2, -0.1, 3]}
+    />
+    
+  );
+};
+
+export default Model;
+
+// Required for GLTF caching
+useGLTF.preload("/Lambo.glb");

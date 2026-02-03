@@ -1,76 +1,70 @@
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap');
-/* === Reset & Global Styles === */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
 
-body {
-  font-family: 'Orbitron', sans-serif;
-  background-color: #000;
-  color: #fff;
+.app {
+  min-height: 100vh;
+  background: #0b1023;
+  color: #f8fafc;
+  position: relative;
   overflow-x: hidden;
-  overflow-y: hidden; /* no scrollbars for 3D scene */
+  font-family: "Poppins", sans-serif;
 }
 
-/* === App Container === */
-#root {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  background-color: #000000;
+.background-waves {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.2), transparent 45%),
+    radial-gradient(circle at 10% 30%, rgba(59, 130, 246, 0.2), transparent 40%),
+    repeating-linear-gradient(
+      120deg,
+      rgba(99, 102, 241, 0.12),
+      rgba(99, 102, 241, 0.12) 1px,
+      transparent 1px,
+      transparent 14px
+    );
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 1;
 }
 
-/* === Canvas Styling === */
-canvas {
-  width: 100%;
-  height: 100%;
-  display: block;
-  outline: none;
-  background-color: #000000;
+.page-content {
+  position: relative;
+  z-index: 3;
+  padding-top: 80px;
 }
 
-/* === Smooth Fade for Overlay === */
-.about-overlay {
-  animation: fadeIn 0.8s ease forwards;
+.section {
+  scroll-margin-top: 110px;
 }
 
-/* === Transition Effects === */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: scale(1.02);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
+.section-hero {
+  padding-top: 40px;
 }
 
-/* === Scrollbar Hidden === */
-::-webkit-scrollbar {
-  width: 0px;
-  background: transparent;
+.section-contact {
+  padding-bottom: 120px;
 }
 
-/* === Selection Highlight === */
-::selection {
-  background-color: #00ffff;
-  color: #000;
-}
-
-/* === Responsive Fixes === */
-@media (max-width: 768px) {
-  body {
-    font-size: 14px;
-  }
-
-  canvas {
-    height: calc(100vh - 60px);
-  }
-}
 .canvas-blocker {
   pointer-events: none;
+}
+
+.section-label {
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 0.85rem;
+  color: rgba(148, 163, 184, 0.8);
+  margin-bottom: 8px;
+}
+
+.section-title {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  color: #f8fafc;
+  margin-bottom: 16px;
+}
+
+.section-description {
+  max-width: 720px;
+  color: rgba(226, 232, 240, 0.7);
+  line-height: 1.7;
+  margin-bottom: 36px;
 }

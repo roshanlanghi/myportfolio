@@ -45,48 +45,61 @@ const Contact = () => {
   };
 
   return (
-    <div className="contact-overlay">
-      <div className="contact-content">
-        <h1 className="contact-title">📬 Get in Touch</h1>
-        <p className="contact-subtitle">
-          I'd love to hear from you! Whether it's a project or collaboration —
-          let’s build something futuristic ⚡
-        </p>
+    <div className="contact">
+      <div className="contact-card">
+        <p className="section-label">GET IN TOUCH</p>
+        <h2 className="section-title">Contact.</h2>
 
         <form className="contact-form" onSubmit={handleSubmit}>
-          <input
-            type="text"
-            name="name"
-            placeholder="Your Name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-          />
+          <label>
+            <span>Your Name</span>
+            <input
+              type="text"
+              name="name"
+              placeholder="What's your name?"
+              value={formData.name}
+              onChange={handleChange}
+              required
+            />
+          </label>
 
-          <input
-            type="email"
-            name="email"
-            placeholder="Your Email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
+          <label>
+            <span>Your Email</span>
+            <input
+              type="email"
+              name="email"
+              placeholder="What's your email?"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
+          </label>
 
-          <textarea
-            name="message"
-            placeholder="Your Message"
-            rows="4"
-            value={formData.message}
-            onChange={handleChange}
-            required
-          ></textarea>
+          <label>
+            <span>Your Message</span>
+            <textarea
+              name="message"
+              placeholder="What do you want to say?"
+              rows="4"
+              value={formData.message}
+              onChange={handleChange}
+              required
+            ></textarea>
+          </label>
 
           <button type="submit" className="contact-btn">
-            Send Message 🚀
+            Send Message
           </button>
 
           {status && <p className="contact-status">{status}</p>}
         </form>
+      </div>
+      <div className="contact-visual" aria-hidden="true">
+        <div className="globe">
+          <span className="globe-ring ring-1" />
+          <span className="globe-ring ring-2" />
+          <span className="globe-ring ring-3" />
+        </div>
       </div>
     </div>
   );

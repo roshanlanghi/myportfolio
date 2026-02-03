@@ -2,32 +2,21 @@ import "./style/Home.css";
 
 const Home = ({ onNavClick }) => {
   return (
-    <div className="home-overlay">
-      <div className="home-content">
-        <h1 className="home-title">
-          ⚡ Welcome to Roshan's 3D Universe
+    <div className="hero">
+      <div className="hero-marker" aria-hidden="true">
+        <span className="hero-dot" />
+        <span className="hero-line" />
+      </div>
+      <div className="hero-content">
+        <h1 className="hero-title">
+          Hi, I'm <span>Roshan Langhi</span>
         </h1>
-
-        <p className="home-subtitle">
-          I create next-gen web experiences blending design, code, and 3D interactivity.  
-          Let’s explore creativity beyond dimensions 🚀
+        <p className="hero-subtitle">
+          I develop 3D visuals, user interfaces, and web applications.
         </p>
-
-        <div className="home-buttons">
-          <button
-            className="home-btn"
-            onClick={() => onNavClick("projects")}
-          >
-            Explore Projects
-          </button>
-
-          <button
-            className="home-btn secondary"
-            onClick={() => onNavClick("contact")}
-          >
-            Contact Me
-          </button>
-        </div>
+        <button className="hero-cta" onClick={() => onNavClick("about")}>
+          Scroll to explore
+        </button>
       </div>
     </div>
   );

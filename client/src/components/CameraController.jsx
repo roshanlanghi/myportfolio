@@ -10,7 +10,9 @@ export default function CameraController({ activeSection }) {
   const positions = {
     home: [1, 1, -3],
     about: [3, 1, 6],
+    work: [2.2, 1.2, 4],
     projects: [-2, 0, -1],
+    testimonials: [-1, 0.5, 2.5],
     contact: [0.3, 4, -2],
   };
 

@@ -1,7 +1,6 @@
-import React from "react";
 import "./style/Home.css";
 
-const Home = ({ onNavClick }) => { // ✅ receives the prop from App.jsx
+const Home = ({ onNavClick }) => {
   return (
     <div className="home-overlay">
       <div className="home-content">
@@ -17,14 +16,14 @@ const Home = ({ onNavClick }) => { // ✅ receives the prop from App.jsx
         <div className="home-buttons">
           <button
             className="home-btn"
-            onClick={() => onNavClick("projects")} // ✅ switches to Projects
+            onClick={() => onNavClick("projects")}
           >
             Explore Projects
           </button>
 
           <button
             className="home-btn secondary"
-            onClick={() => onNavClick("contact")} // ✅ switches to Contact
+            onClick={() => onNavClick("contact")}
           >
             Contact Me
           </button>

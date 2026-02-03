@@ -1,22 +1,19 @@
-import React from "react";
 import "./style/Navbar.css";
 
 const Navbar = ({ onNavClick, activeSection }) => {
-  const handleClick = (tab) => {
-    onNavClick(tab);
-  };
+  const navItems = ["home", "projects", "about", "contact"];
 
   return (
     <nav className="navbar">
       <div className="nav-logo">
-        ⚡ Roshan'S <span style={{ color: "#00ffff" }}>Portfolio</span>
+        ⚡ Roshan'S <span className="nav-logo__accent">Portfolio</span>
       </div>
 
       <ul className="nav-links">
-        {["home", "projects", "about", "contact"].map((tab) => (
+        {navItems.map((tab) => (
           <li key={tab}>
             <button
-              onClick={() => handleClick(tab)}
+              onClick={() => onNavClick(tab)}
               className={`nav-btn ${activeSection === tab ? "active" : ""}`}
             >
               {tab.charAt(0).toUpperCase() + tab.slice(1)}

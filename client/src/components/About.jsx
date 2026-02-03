@@ -1,11 +1,29 @@
-import React from "react";
 import "./style/About.css";
 
 const About = () => {
+  const skills = [
+    "React / React Three Fiber",
+    "Three.js / GLSL Basics",
+    "JavaScript (ES6+) / HTML / CSS",
+    "Node.js / Express / REST APIs",
+    "IoT (ESP32 + Firebase Real-Time DB)",
+    "C++ (DSA) / Python Basics",
+    "Database: MySQL, SQLite",
+    "Git / GitHub / Render Deployment",
+  ];
+
+  const experience = [
+    "Interactive 3D Web Porfolios (Three.js + R3F)",
+    "Smart Electricity Energy Meter (ESP32 + Firebase)",
+    "Java Swing Library Management System (SQL Backend)",
+    "Frontend Development (React + Animations)",
+    "WebDev Camp @ TechSanjivani 2K25",
+    "Open-Source Projects on GitHub",
+  ];
+
   return (
     <div className="about-overlay">
       <div className="about-content">
-        
         <div className="about-strip"></div>
 
         <h1 className="about-title fade-up">
@@ -30,38 +48,27 @@ const About = () => {
             <strong>functionality, interactivity, and aesthetic visuals</strong>
             into every project I create.
           </p>
-
-       
+        </div>
+      </div>
+      <div className="about-grid">
+        <div className="about-card">
+          <h3>💡 Skills</h3>
+          <ul>
+            {skills.map((skill) => (
+              <li key={skill}>{skill}</li>
+            ))}
+          </ul>
         </div>
 
+        <div className="about-card">
+          <h3>⚙️ Experience</h3>
+          <ul>
+            {experience.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        </div>
       </div>
-         <div className="about-grid">
-            <div className="about-card">
-              <h3>💡 Skills</h3>
-              <ul>
-                <li>React / React Three Fiber</li>
-                <li>Three.js / GLSL Basics</li>
-                <li>JavaScript (ES6+) / HTML / CSS</li>
-                <li>Node.js / Express / REST APIs</li>
-                <li>IoT (ESP32 + Firebase Real-Time DB)</li>
-                <li>C++ (DSA) / Python Basics</li>
-                <li>Database: MySQL, SQLite</li>
-                <li>Git / GitHub / Render Deployment</li>
-              </ul>
-            </div>
-
-            <div className="about-card">
-              <h3>⚙️ Experience</h3>
-              <ul>
-                <li>Interactive 3D Web Porfolios (Three.js + R3F)</li>
-                <li>Smart Electricity Energy Meter (ESP32 + Firebase)</li>
-                <li>Java Swing Library Management System (SQL Backend)</li>
-                <li>Frontend Development (React + Animations)</li>
-                <li>WebDev Camp @ TechSanjivani 2K25</li>
-                <li>Open-Source Projects on GitHub</li>
-              </ul>
-            </div>
-          </div>
     </div>
   );
 };

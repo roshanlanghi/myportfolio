@@ -1,37 +1,30 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./style/Contact.css";
 
 const Contact = () => {
-  // form data
-  const [formData, setFormData] = useState({
+  const initialFormData = {
     name: "",
     email: "",
     message: "",
-  });
-
-  // status
+  };
+  const [formData, setFormData] = useState(initialFormData);
   const [status, setStatus] = useState("");
 
-  // Detect environment
- const API_URL =
-  import.meta.env.MODE === "development"
-    ? "http://localhost:5000/send"
-    : "https://myportfolio-3qml.onrender.com/send";
+  const apiUrl =
+    import.meta.env.MODE === "development"
+      ? "http://localhost:5000/send"
+      : "https://myportfolio-3qml.onrender.com/send";
 
-  // ⬅ final backend URL
-
-  // handle input
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // handle form submit
   const handleSubmit = async (e) => {
     e.preventDefault();
     setStatus("⏳ Sending message...");
 
     try {
-      const res = await fetch(API_URL, {
+      const res = await fetch(apiUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -41,7 +34,7 @@ const Contact = () => {
 
       if (res.ok && data.success) {
         setStatus("✅ Message sent successfully!");
-        setFormData({ name: "", email: "", message: "" });
+        setFormData(initialFormData);
       } else {
         setStatus("❌ Failed to send. Try again.");
       }

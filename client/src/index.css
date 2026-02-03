@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
 
 /* === Global Reset === */
 * {
@@ -9,18 +9,16 @@
 
 /* === Body Styling === */
 body {
- font-family: 'Orbitron', sans-serif;
-  background-color: #0a0a0a;
+  font-family: "Poppins", sans-serif;
+  background-color: #0b1023;
   color: #ffffff;
   overflow-x: hidden;
 }
 
 /* === Root Container === */
 #root {
-  height: 100vh;
-  width: 100vw;
-  overflow: hidden;
-  position: relative;
+  min-height: 100vh;
+  width: 100%;
 }
 
 /* === Canvas (3D Scene) === */
@@ -33,13 +31,21 @@ canvas {
 
 /* === Scrollbar Hide (Optional for clean UI) === */
 ::-webkit-scrollbar {
-  width: 0px;
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.4);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-track {
   background: transparent;
 }
 
 /* === Text Selection Color === */
 ::selection {
-  background-color: #00ffff;
+  background-color: #8b5cf6;
   color: #0a0a0a;
 }
 
@@ -59,20 +65,10 @@ a {
 .mobile-bg {
   position: fixed;
   inset: 0;
-  background: url('/images/mobile.jpg') center/cover no-repeat;
-  z-index: -1;
-} 
-.mobile-bg {
-  position: fixed;
-  top: 1;
-  left: 0;
-
   width: 100%;
   height: 100vh;
-
-  object-fit: cover;          /* fill screen */
-  object-position: center;    /* CENTER the image */
-
+  object-fit: cover;
+  object-position: center;
   z-index: 0;
-  filter: brightness(0.65);   /* optional: matches 3D darkness */
+  filter: brightness(0.65);
 }

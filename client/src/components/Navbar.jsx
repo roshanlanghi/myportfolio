@@ -1,13 +1,16 @@
 import "./style/Navbar.css";
 
 const Navbar = ({ onNavClick, activeSection }) => {
-  const navItems = ["home", "projects", "about", "contact"];
+  const navItems = ["about", "work", "contact"];
 
   return (
     <nav className="navbar">
-      <div className="nav-logo">
-        ⚡ Roshan'S <span className="nav-logo__accent">Portfolio</span>
-      </div>
+      <button className="nav-logo" onClick={() => onNavClick("home")}>
+        <span className="nav-logo__icon" aria-hidden="true">
+          :)
+        </span>
+        <span className="nav-logo__text">Roshan Langhi — 3D Portfolio</span>
+      </button>
 
       <ul className="nav-links">
         {navItems.map((tab) => (

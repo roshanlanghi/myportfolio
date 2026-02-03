@@ -3,58 +3,53 @@ import "./style/Projects.css";
 const Projects = () => {
   const projects = [
     {
-      title: "⚡ Smart Electricity Energy Meter",
+      title: "Car Rent",
       description:
-        "IoT-based project using ESP32 and Firebase to monitor real-time power usage.",
-      tech: ["ESP32", "Firebase", "React"],
+        "Web-based platform that allows users to search, book, and manage car rentals.",
+      stack: ["React", "Tailwind", "Node.js"],
+      accent: "accent-blue",
     },
     {
-      title: "💙 Mental Health Care App",
+      title: "Job IT",
       description:
-        "A Flutter app that promotes wellness and tracks mental health metrics.",
-      tech: ["Flutter", "Firebase", "Python"],
+        "A job search platform to browse openings, view salary insights, and apply.",
+      stack: ["Next.js", "MongoDB", "Framer"],
+      accent: "accent-purple",
     },
     {
-      title: "📚 Library Management System",
+      title: "Trip Guide",
       description:
-        "Java Swing + MySQL application for managing library records and transactions.",
-      tech: ["Java", "MySQL", "Swing"],
-    },
-    {
-      title: "🌐 3D Portfolio Website",
-      description:
-        "A React Three Fiber-powered portfolio showcasing interactive 3D experiences.",
-      tech: ["React", "Three.js", "Drei"],
+        "A travel booking experience for planning and booking seamless journeys.",
+      stack: ["React", "Firebase", "Stripe"],
+      accent: "accent-teal",
     },
   ];
 
   return (
-    <div className="projects-overlay">
-      <div className="projects-content">
-        <div className="about-strip"></div>
-        <h1 className="projects-title">
-          🚀 My <span>Featured Projects</span>
-        </h1>
+    <div className="projects">
+      <p className="section-label">MY WORK</p>
+      <h2 className="section-title">Projects.</h2>
+      <p className="section-description">
+        Following projects showcase my skills and experience through real-world
+        examples of my work. Each project is briefly described with links to
+        code repositories and live demos.
+      </p>
 
-        <p className="projects-subtitle">
-          A showcase of my futuristic projects combining code, creativity, and innovation 💡
-        </p>
-
-        <div className="projects-grid">
-          {projects.map((project) => (
-            <div className="project-card" key={project.title}>
-              <h3>{project.title}</h3>
-              <p>{project.description}</p>
-              <div className="tech-stack">
-                {project.tech.map((item) => (
-                  <span className="tech" key={item}>
-                    {item}
-                  </span>
-                ))}
-              </div>
+      <div className="project-grid">
+        {projects.map((project) => (
+          <article className={`project-card ${project.accent}`} key={project.title}>
+            <div className="project-thumb">
+              <div className="project-thumb__overlay" />
             </div>
-          ))}
-        </div>
+            <h3>{project.title}</h3>
+            <p>{project.description}</p>
+            <div className="project-stack">
+              {project.stack.map((item) => (
+                <span key={item}>{item}</span>
+              ))}
+            </div>
+          </article>
+        ))}
       </div>
     </div>
   );

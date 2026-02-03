@@ -1,5 +1,4 @@
-import React, { useRef, useEffect } from "react";
-import { useGLTF } from "@react-three/drei";
+import React, { useMemo, useRef, useEffect } from "react";
 import { useFrame } from "@react-three/fiber";
 
 const Model = () => {
@@ -7,8 +6,15 @@ const Model = () => {
   const targetRotation = useRef({ x: 0, y: 0 });
   const lastPointer = useRef({ x: null, y: null });
 
-  // Load-compressed GLB (Draco or Meshopt recommended)
-  const { scene } = useGLTF("/Lambo.glb");
+  const materials = useMemo(
+    () => ({
+      body: { color: "#1f2937", roughness: 0.4, metalness: 0.2 },
+      keyboard: { color: "#111827", roughness: 0.6, metalness: 0.1 },
+      screen: { color: "#0f172a", roughness: 0.2, metalness: 0.05, emissive: "#38bdf8", emissiveIntensity: 0.5 },
+      trackpad: { color: "#374151", roughness: 0.5, metalness: 0.1 },
+    }),
+    []
+  );
 
   // ⚡ Freeze rendering when tab inactive (performance boost)
   useEffect(() => {
@@ -63,6 +69,35 @@ const Model = () => {
       (targetRotation.current.x - modelRef.current.rotation.x) * 0.08;
   });
 
+  return (
+    <group ref={modelRef} position={[2, -0.2, 3]} scale={1.1}>
+      <mesh position={[0, -0.08, 0]} castShadow={false} receiveShadow={false}>
+        <boxGeometry args={[2.3, 0.12, 1.6]} />
+        <meshStandardMaterial {...materials.body} />
+      </mesh>
+      <mesh position={[0, -0.02, 0.15]} castShadow={false} receiveShadow={false}>
+        <boxGeometry args={[2.1, 0.04, 1.2]} />
+        <meshStandardMaterial {...materials.keyboard} />
+      </mesh>
+      <mesh position={[0, -0.02, -0.45]} castShadow={false} receiveShadow={false}>
+        <boxGeometry args={[0.7, 0.03, 0.4]} />
+        <meshStandardMaterial {...materials.trackpad} />
+      </mesh>
+      <group position={[0, 0.62, -0.75]} rotation={[-1.1, 0, 0]}>
+        <mesh castShadow={false} receiveShadow={false}>
+          <boxGeometry args={[2.1, 1.3, 0.08]} />
+          <meshStandardMaterial {...materials.body} />
+        </mesh>
+        <mesh position={[0, 0, 0.05]} castShadow={false} receiveShadow={false}>
+          <boxGeometry args={[1.85, 1.1, 0.02]} />
+          <meshStandardMaterial {...materials.screen} />
+        </mesh>
+      </group>
+    </group>
+  );
+};
+
+export default Model;
   // ⚡ Reduce draw calls: ensure frustumCulled ON & shadows off for mobile
   useEffect(() => {
     scene.traverse((obj) => {

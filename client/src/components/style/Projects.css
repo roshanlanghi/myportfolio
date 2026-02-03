@@ -1,249 +1,71 @@
-@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
 
-/* === Transparent Overlay (shows 3D background) === */
-.projects-overlay {
+.projects {
+  padding: 0 8vw 80px;
+  font-family: "Poppins", sans-serif;
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+  margin-top: 32px;
+}
+
+.project-card {
+  padding: 24px;
+  border-radius: 24px;
+  background: rgba(15, 23, 42, 0.65);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.45);
+}
+
+.project-thumb {
+  height: 180px;
+  border-radius: 18px;
+  background: radial-gradient(circle at top, rgba(148, 163, 184, 0.25), transparent),
+    linear-gradient(135deg, rgba(59, 130, 246, 0.4), rgba(139, 92, 246, 0.4));
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.project-thumb__overlay {
   position: absolute;
   inset: 0;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  z-index: 900;
-  background: rgba(0, 0, 0, 0.05);
-  /* ✅ Correct spacing for navbar (fixed 70px height + extra buffer) */
-  padding-top: 120px;
-  font-family: "Rajdhani", sans-serif;
-  pointer-events: none;
-  overflow-y: auto; /* ✅ Enables scrolling */
-  scroll-behavior: smooth;
+  background: rgba(15, 23, 42, 0.2);
 }
 
-/* === Scrollbar styling === */
-.projects-overlay::-webkit-scrollbar {
-  width: 6px;
-}
-.projects-overlay::-webkit-scrollbar-thumb {
-  background: rgba(0, 255, 255, 0.4);
-  border-radius: 10px;
-}
-.projects-overlay::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-/* === Content Area === */
-.projects-content {
-  pointer-events: auto;
-  text-align: center;
-  color: #ffffff;
-  max-width: 1100px;
-  width: 90%;
-  padding: 40px 30px;
-  border-radius: 12px;
-  background: transparent;
-  border: 1px solid rgba(0, 255, 255, 0.2);
-  box-shadow: 0 0 25px rgba(0, 255, 255, 0.15);
-  animation: fadeIn 1s ease forwards;
-  position: relative;
-  margin-bottom: 100px; /* ✅ more breathing room at bottom */
-}
-
-/* === Title === */
-.projects-title {
-  color: #00ffff;
-  font-size: 2.3rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  text-shadow: 0 0 15px #00ffff, 0 0 30px #0088ff;
-  margin-bottom: 10px;
-  letter-spacing: 2px;
-}
-
-.projects-title span {
-  color: #00ffff;
-  text-shadow: 0 0 15px #00ffff, 0 0 25px #00ffff;
-}
-
-/* === Subtitle === */
-.projects-subtitle {
-  color: #cceeff;
-  font-size: 1.1rem;
-  margin-bottom: 25px;
-  text-shadow: 0 0 8px rgba(0, 255, 255, 0.3);
-}
-
-/* === Projects Grid === */
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 25px;
-  margin-bottom: 25px;
-}
-
-/* === Project Card === */
-.project-card {
-  background: rgba(0, 0, 0, 0.25);
-  border: 1px solid rgba(0, 255, 255, 0.2);
-  border-radius: 12px;
-  padding: 20px;
-  text-align: left;
-  transition: all 0.4s ease;
-  box-shadow: 0 0 15px rgba(0, 255, 255, 0.1);
-}
-
-.project-card:hover {
-  transform: translateY(-10px) scale(1.02);
-  box-shadow: 0 0 30px rgba(0, 255, 255, 0.4);
-}
-
-/* === Project Titles === */
 .project-card h3 {
-  color: #00eaff;
-  font-size: 1.3rem;
-  margin-bottom: 8px;
-  text-shadow: 0 0 10px #00fff7;
-}
-
-/* === Description === */
-.project-card p {
-  color: #ddd;
-  font-size: 0.95rem;
+  color: #f8fafc;
   margin-bottom: 12px;
-  line-height: 1.5;
 }
 
-/* === Tech Tags === */
-.tech-stack {
+.project-card p {
+  color: rgba(226, 232, 240, 0.7);
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.project-stack {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
 }
 
-.tech {
-  background: rgba(0, 255, 255, 0.1);
-  border: 1px solid rgba(0, 255, 255, 0.3);
-  color: #00ffff;
-  padding: 5px 10px;
-  border-radius: 8px;
+.project-stack span {
   font-size: 0.85rem;
-  transition: all 0.3s ease;
+  color: #38bdf8;
 }
 
-.tech:hover {
-  background: rgba(0, 255, 255, 0.25);
-  box-shadow: 0 0 10px #00ffff;
+.project-card.accent-blue {
+  border-color: rgba(59, 130, 246, 0.5);
 }
 
-/* === Glowing Strip === */
-.about-strip {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 12px;
-  background: linear-gradient(90deg, transparent, #00ffff, transparent);
-  box-shadow: 0 0 20px #00ffff;
-  opacity: 0.8;
-  animation: moveLight 4s linear infinite;
-  cursor: pointer;
+.project-card.accent-purple {
+  border-color: rgba(139, 92, 246, 0.5);
 }
 
-.about-strip:hover {
-  opacity: 1;
-  box-shadow: 0 0 25px #00ffff, 0 0 40px #00ccff;
-}
-
-/* === Animations === */
-@keyframes moveLight {
-  0% { background-position: 0% 50%; }
-  100% { background-position: 200% 50%; }
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* === RESPONSIVE STYLES === */
-
-/* Tablets */
-@media (max-width: 1024px) {
-  .projects-content {
-    width: 95%;
-    padding: 25px;
-  }
-  .projects-title {
-    font-size: 2rem;
-  }
-  .projects-subtitle {
-    font-size: 1rem;
-  }
-}
-
-/* Mobile devices */
-@media (max-width: 768px) {
-  .projects-overlay {
-    align-items: flex-start;
-    padding-top: 110px; /* ✅ adjusted for navbar on mobile */
-    overflow-y: auto;
-  }
-
-  .projects-content {
-    width: 95%;
-    padding: 20px 15px;
-  }
-
-  .projects-title {
-    font-size: 1.7rem;
-    line-height: 1.3;
-  }
-
-  .projects-subtitle {
-    font-size: 0.95rem;
-    margin-bottom: 18px;
-  }
-
-  .project-card {
-    padding: 16px;
-  }
-
-  .project-card h3 {
-    font-size: 1.1rem;
-  }
-
-  .project-card p {
-    font-size: 0.9rem;
-  }
-
-  .tech {
-    font-size: 0.8rem;
-    padding: 4px 8px;
-  }
-}
-
-/* Small phones */
-@media (max-width: 480px) {
-  .projects-title {
-    font-size: 1.5rem;
-  }
-  .projects-subtitle {
-    font-size: 0.85rem;
-  }
-  .projects-content {
-    padding: 15px 10px;
-  }
-  .projects-grid {
-    gap: 15px;
-  }
-}
-
-/* Very small screens */
-@media (max-width: 360px) {
-  .projects-title {
-    font-size: 1.3rem;
-  }
-  .project-card p {
-    font-size: 0.85rem;
-  }
-  .tech {
-    font-size: 0.75rem;
-  }
+.project-card.accent-teal {
+  border-color: rgba(45, 212, 191, 0.5);
 }

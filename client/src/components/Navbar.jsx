@@ -1,30 +1,29 @@
-import React from "react";
 import "./style/Navbar.css";
 
+const navItems = ["home", "projects", "about", "contact"];
+
 const Navbar = ({ onNavClick, activeSection }) => {
-  const handleClick = (tab) => {
-    onNavClick(tab);
-  };
-
   return (
-    <nav className="navbar">
-      <div className="nav-logo">
-        ⚡ Roshan'S <span style={{ color: "#00ffff" }}>Portfolio</span>
-      </div>
+    <header className="navbar" role="banner">
+      <button className="nav-logo" onClick={() => onNavClick("home")}>
+        Roshan Langhi <span className="nav-logo__accent">Full-Stack Developer</span>
+      </button>
 
-      <ul className="nav-links">
-        {["home", "projects", "about", "contact"].map((tab) => (
-          <li key={tab}>
-            <button
-              onClick={() => handleClick(tab)}
-              className={`nav-btn ${activeSection === tab ? "active" : ""}`}
-            >
-              {tab.charAt(0).toUpperCase() + tab.slice(1)}
-            </button>
-          </li>
-        ))}
-      </ul>
-    </nav>
+      <nav aria-label="Primary navigation">
+        <ul className="nav-links">
+          {navItems.map((tab) => (
+            <li key={tab}>
+              <button
+                onClick={() => onNavClick(tab)}
+                className={`nav-btn ${activeSection === tab ? "active" : ""}`}
+              >
+                {tab.charAt(0).toUpperCase() + tab.slice(1)}
+              </button>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </header>
   );
 };
 

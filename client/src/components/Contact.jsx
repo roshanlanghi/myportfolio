@@ -1,13 +1,12 @@
 import { useState } from "react";
 import "./style/Contact.css";
 
-const initialFormData = {
-  name: "",
-  email: "",
-  message: "",
-};
-
 const Contact = () => {
+  const initialFormData = {
+    name: "",
+    email: "",
+    message: "",
+  };
   const [formData, setFormData] = useState(initialFormData);
   const [status, setStatus] = useState("");
 
@@ -16,82 +15,93 @@ const Contact = () => {
       ? "http://localhost:5000/send"
       : "https://myportfolio-3qml.onrender.com/send";
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setFormData((previous) => ({ ...previous, [name]: value }));
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    setStatus("Sending your message...");
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setStatus("⏳ Sending message...");
 
     try {
-      const response = await fetch(apiUrl, {
+      const res = await fetch(apiUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
 
-      const data = await response.json();
+      const data = await res.json();
 
-      if (response.ok && data.success) {
-        setStatus("Message sent successfully. I will get back to you soon.");
+      if (res.ok && data.success) {
+        setStatus("✅ Message sent successfully!");
         setFormData(initialFormData);
-        return;
+      } else {
+        setStatus("❌ Failed to send. Try again.");
       }
-
-      setStatus("Message could not be sent right now. Please try again.");
-    } catch (error) {
-      console.error(error);
-      setStatus("Service is temporarily unavailable. Please try again later.");
+    } catch (err) {
+      console.error(err);
+      setStatus("⚠️ Server error. Try later.");
     }
   };
 
   return (
-    <section className="contact-overlay">
-      <div className="contact-content">
-        <p className="contact-kicker">Contact</p>
-        <h2 className="contact-title">Let&apos;s build your next full-stack product.</h2>
-        <p className="contact-subtitle">
-          Share your project scope, timeline, and goals. I&apos;ll respond with a practical plan.
-        </p>
+    <div className="contact">
+      <div className="contact-card">
+        <p className="section-label">GET IN TOUCH</p>
+        <h2 className="section-title">Contact.</h2>
 
         <form className="contact-form" onSubmit={handleSubmit}>
-          <input
-            type="text"
-            name="name"
-            placeholder="Your name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-          />
+          <label>
+            <span>Your Name</span>
+            <input
+              type="text"
+              name="name"
+              placeholder="What's your name?"
+              value={formData.name}
+              onChange={handleChange}
+              required
+            />
+          </label>
 
-          <input
-            type="email"
-            name="email"
-            placeholder="Your email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
+          <label>
+            <span>Your Email</span>
+            <input
+              type="email"
+              name="email"
+              placeholder="What's your email?"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
+          </label>
 
-          <textarea
-            name="message"
-            placeholder="Tell me about your project"
-            rows="5"
-            value={formData.message}
-            onChange={handleChange}
-            required
-          />
+          <label>
+            <span>Your Message</span>
+            <textarea
+              name="message"
+              placeholder="What do you want to say?"
+              rows="4"
+              value={formData.message}
+              onChange={handleChange}
+              required
+            ></textarea>
+          </label>
 
           <button type="submit" className="contact-btn">
-            Send Inquiry
+            Send Message
           </button>
 
           {status && <p className="contact-status">{status}</p>}
         </form>
       </div>
-    </section>
+      <div className="contact-visual" aria-hidden="true">
+        <div className="globe">
+          <span className="globe-ring ring-1" />
+          <span className="globe-ring ring-2" />
+          <span className="globe-ring ring-3" />
+        </div>
+      </div>
+    </div>
   );
 };
 

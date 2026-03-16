@@ -1,79 +1,79 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
+
 .navbar {
   position: fixed;
   top: 0;
   left: 0;
-  right: 0;
-  z-index: 1000;
-  height: 72px;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 2.5rem;
-  background: rgba(2, 6, 23, 0.85);
-  border-bottom: 1px solid rgba(148, 163, 184, 0.24);
-  backdrop-filter: blur(10px);
+  padding: 18px 7vw;
+  background: rgba(8, 12, 28, 0.85);
+  backdrop-filter: blur(18px);
+  z-index: 5;
+  font-family: "Poppins", sans-serif;
 }
 
 .nav-logo {
-  border: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
   background: transparent;
+  border: none;
   color: #f8fafc;
   font-size: 1rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
+  font-weight: 600;
   cursor: pointer;
-  text-align: left;
 }
 
-.nav-logo__accent {
-  color: #38bdf8;
-  font-weight: 600;
-  margin-left: 0.5rem;
+.nav-logo__text {
+  white-space: nowrap;
+}
+
+.nav-logo__icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 2px solid #facc15;
+  color: #facc15;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
 }
 
 .nav-links {
   list-style: none;
   display: flex;
-  align-items: center;
-  gap: 0.75rem;
+  gap: 32px;
+  margin: 0;
+  padding: 0;
 }
 
 .nav-btn {
-  border: 1px solid transparent;
   background: transparent;
-  color: #cbd5e1;
-  padding: 0.5rem 0.9rem;
-  border-radius: 999px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  text-transform: capitalize;
+  border: none;
+  color: rgba(226, 232, 240, 0.7);
+  font-weight: 500;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: color 0.2s ease;
 }
 
-.nav-btn:hover {
-  color: #f8fafc;
-  border-color: rgba(148, 163, 184, 0.35);
-  background: rgba(15, 23, 42, 0.75);
-}
-
+.nav-btn:hover,
 .nav-btn.active {
-  color: #0f172a;
-  background: #38bdf8;
-  border-color: #38bdf8;
+  color: #f8fafc;
 }
 
 @media (max-width: 900px) {
   .navbar {
     flex-direction: column;
     align-items: flex-start;
-    justify-content: center;
-    gap: 0.5rem;
-    height: auto;
-    padding: 0.75rem 1rem;
+    gap: 12px;
   }
+}
 
+@media (max-width: 600px) {
   .nav-links {
-    flex-wrap: wrap;
+    gap: 16px;
   }
 }

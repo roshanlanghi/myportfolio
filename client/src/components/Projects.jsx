@@ -1,65 +1,57 @@
 import "./style/Projects.css";
 
-const projects = [
-  {
-    title: "Smart Energy Monitoring System",
-    description:
-      "Real-time energy analytics platform with IoT ingestion, usage dashboards, and threshold alerts.",
-    impact: "Improved visibility into device-level power consumption.",
-    tech: ["React", "Node.js", "Firebase", "ESP32"],
-  },
-  {
-    title: "Mental Wellness Companion",
-    description:
-      "Cross-platform application for mood tracking, guided activities, and habit reminders.",
-    impact: "Delivered a consistent mobile UX backed by structured cloud data.",
-    tech: ["Flutter", "Firebase", "Python"],
-  },
-  {
-    title: "Library Operations Dashboard",
-    description:
-      "Role-based management software for book inventory, lending workflows, and reporting.",
-    impact: "Reduced manual operations by automating key circulation tasks.",
-    tech: ["Java", "MySQL", "Swing"],
-  },
-  {
-    title: "Interactive 3D Developer Portfolio",
-    description:
-      "Performance-oriented portfolio experience featuring animated sections and immersive visuals.",
-    impact: "Showcases engineering depth and design execution in a single platform.",
-    tech: ["React", "Three.js", "Framer Motion"],
-  },
-];
-
 const Projects = () => {
+  const projects = [
+    {
+      title: "Car Rent",
+      description:
+        "Web-based platform that allows users to search, book, and manage car rentals.",
+      stack: ["React", "Tailwind", "Node.js"],
+      accent: "accent-blue",
+    },
+    {
+      title: "Job IT",
+      description:
+        "A job search platform to browse openings, view salary insights, and apply.",
+      stack: ["Next.js", "MongoDB", "Framer"],
+      accent: "accent-purple",
+    },
+    {
+      title: "Trip Guide",
+      description:
+        "A travel booking experience for planning and booking seamless journeys.",
+      stack: ["React", "Firebase", "Stripe"],
+      accent: "accent-teal",
+    },
+  ];
+
   return (
-    <section className="projects-overlay">
-      <div className="projects-content">
-        <p className="projects-kicker">Selected Work</p>
-        <h2 className="projects-title">Production-minded projects across web, data, and IoT.</h2>
+    <div className="projects">
+      <p className="section-label">MY WORK</p>
+      <h2 className="section-title">Projects.</h2>
+      <p className="section-description">
+        Following projects showcase my skills and experience through real-world
+        examples of my work. Each project is briefly described with links to
+        code repositories and live demos.
+      </p>
 
-        <p className="projects-subtitle">
-          Each project reflects practical problem solving, maintainable architecture, and user-focused design.
-        </p>
-
-        <div className="projects-grid">
-          {projects.map((project) => (
-            <article className="project-card" key={project.title}>
-              <h3>{project.title}</h3>
-              <p>{project.description}</p>
-              <p className="project-impact">{project.impact}</p>
-              <div className="tech-stack">
-                {project.tech.map((item) => (
-                  <span className="tech" key={item}>
-                    {item}
-                  </span>
-                ))}
-              </div>
-            </article>
-          ))}
-        </div>
+      <div className="project-grid">
+        {projects.map((project) => (
+          <article className={`project-card ${project.accent}`} key={project.title}>
+            <div className="project-thumb">
+              <div className="project-thumb__overlay" />
+            </div>
+            <h3>{project.title}</h3>
+            <p>{project.description}</p>
+            <div className="project-stack">
+              {project.stack.map((item) => (
+                <span key={item}>{item}</span>
+              ))}
+            </div>
+          </article>
+        ))}
       </div>
-    </section>
+    </div>
   );
 };
 

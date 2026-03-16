@@ -1,82 +1,104 @@
-.contact-overlay {
-  position: absolute;
-  inset: 0;
-  padding: 7.5rem 1.5rem 2rem;
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+.contact {
   display: grid;
-  place-items: center;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 40px;
+  padding: 40px 8vw 120px;
+  font-family: "Poppins", sans-serif;
 }
 
-.contact-content {
-  width: min(720px, 100%);
-  background: rgba(15, 23, 42, 0.78);
-  border: 1px solid rgba(148, 163, 184, 0.25);
-  border-radius: 20px;
-  padding: 2rem;
-}
-
-.contact-kicker {
-  color: #38bdf8;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  font-weight: 700;
-  font-size: 0.78rem;
-}
-
-.contact-title {
-  margin-top: 0.75rem;
-  color: #f8fafc;
-  line-height: 1.2;
-  font-size: clamp(1.5rem, 3.4vw, 2.2rem);
-}
-
-.contact-subtitle {
-  margin-top: 0.85rem;
-  color: #94a3b8;
-  line-height: 1.6;
+.contact-card {
+  background: rgba(15, 23, 42, 0.7);
+  border-radius: 24px;
+  padding: 32px;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  box-shadow: 0 30px 50px rgba(15, 23, 42, 0.55);
 }
 
 .contact-form {
-  margin-top: 1.2rem;
-  display: grid;
-  gap: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-top: 20px;
+}
+
+.contact-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: rgba(226, 232, 240, 0.7);
+  font-size: 0.95rem;
 }
 
 .contact-form input,
 .contact-form textarea {
-  width: 100%;
-  border-radius: 10px;
-  border: 1px solid rgba(148, 163, 184, 0.35);
-  background: rgba(2, 6, 23, 0.75);
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 12px;
+  padding: 12px 16px;
   color: #f8fafc;
-  padding: 0.75rem 0.85rem;
-  font: inherit;
+  font-size: 0.95rem;
   outline: none;
-  transition: border-color 0.2s ease;
 }
 
 .contact-form input:focus,
 .contact-form textarea:focus {
-  border-color: #38bdf8;
+  border-color: rgba(139, 92, 246, 0.6);
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.2);
 }
 
 .contact-btn {
-  width: fit-content;
-  padding: 0.68rem 1rem;
-  border-radius: 10px;
-  border: 1px solid #38bdf8;
-  background: #38bdf8;
+  align-self: flex-start;
+  padding: 12px 24px;
+  border-radius: 999px;
+  border: none;
+  background: linear-gradient(135deg, #8b5cf6, #22d3ee);
   color: #0f172a;
-  font-weight: 700;
+  font-weight: 600;
   cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.contact-btn:hover {
+  transform: translateY(-2px);
 }
 
 .contact-status {
-  color: #cbd5e1;
-  font-size: 0.92rem;
+  color: rgba(226, 232, 240, 0.7);
 }
 
-@media (max-width: 768px) {
-  .contact-content {
-    padding: 1.4rem;
-  }
+.contact-visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.globe {
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #4ade80, #1e3a8a 60%, #0f172a);
+  position: relative;
+  box-shadow: 0 40px 80px rgba(15, 23, 42, 0.6);
+}
+
+.globe-ring {
+  position: absolute;
+  inset: -10%;
+  border: 8px solid rgba(248, 250, 252, 0.5);
+  border-radius: 50%;
+  transform: rotate(20deg);
+}
+
+.ring-2 {
+  inset: -20%;
+  transform: rotate(-20deg);
+  opacity: 0.7;
+}
+
+.ring-3 {
+  inset: -30%;
+  transform: rotate(45deg);
+  opacity: 0.4;
 }
